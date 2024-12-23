@@ -124,8 +124,6 @@
 			player = null;
 			clearTimeout(slideChangeTimeout);
 			slideChangeTimeout = null;
-			const container = document.getElementById('slides-container');
-			if (container) container.innerHTML = '';
 		};
 
 		const createSlideElement = (movie, hasVideo = false) => {
@@ -364,9 +362,13 @@
 				startSlideChangeTimer();
 			}
 
-
-			container.innerHTML = '';
-			container.appendChild(slide);
+			container.style.transition = 'opacity 0.5s ease'; 
+			container.style.opacity = '0';
+			setTimeout(() => {
+				container.innerHTML = ''; 
+				container.style.opacity = '';
+				container.appendChild(slide);
+			}, 500); 
 			};
 		
 				function addSwipeListeners(slide) {
